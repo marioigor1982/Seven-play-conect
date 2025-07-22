@@ -3,7 +3,7 @@ import { PhoneIcon } from './icons';
 
 const About: React.FC = () => {
   return (
-    <section className="py-20 bg-[#6A00B8] relative overflow-hidden">
+    <section id="sobre" className="py-20 bg-[#6A00B8] relative overflow-hidden">
       <video
         autoPlay
         loop

@@ -5,6 +5,7 @@ import About from './components/About';
 import Plans from './components/Plans';
 import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
+import GoogleReviews from './components/GoogleReviews';
 
 const App: React.FC = () => {
   const homeRef = useRef<HTMLDivElement>(null);

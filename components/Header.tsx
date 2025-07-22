@@ -26,8 +26,7 @@ const NavLink: React.FC<NavLinkProps> = ({ onClick, children, onComplete, hoverC
       <button
         onClick={handleClick}
         className={`px-4 py-2 text-[#999999] transition-colors duration-300 w-full text-left md:w-auto md:text-center font-normal hover:font-bold hover:scale-105 hover:text-[${hoverColor}]`}
-        style={{ transition: 'all 0.2s' }}
-        style={{ color: textColor }} // Apply text color
+        style={{ transition: 'all 0.2s', color: textColor }}
       >
         {children}
       </button>
@@ -44,6 +43,7 @@ const Header: React.FC<HeaderProps> = ({ onScrollToHome, onScrollToAbout, onScro
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [footerVisible, setFooterVisible] = useState(false);
   const [planosActive, setPlanosActive] = useState(false);
+  const [aboutActive, setAboutActive] = useState(false);
   const footerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -74,6 +74,18 @@ const Header: React.FC<HeaderProps> = ({ onScrollToHome, onScrollToAbout, onScro
     return () => observer.disconnect();
   }, []);
 
+  // Detectar se a seção Sobre está visível
+  useEffect(() => {
+    const section = document.getElementById('sobre');
+    if (!section) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => setAboutActive(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
@@ -81,10 +93,14 @@ const Header: React.FC<HeaderProps> = ({ onScrollToHome, onScrollToAbout, onScro
       <div className="container mx-auto px-6 py-1 flex justify-between items-center">
         <Logo onClick={() => { onScrollToHome(); closeMenu(); }} />
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center text-lg">
+        <nav className={`hidden md:flex items-center text-lg transition-opacity duration-300 ${footerVisible ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
           <NavLink onClick={onScrollToHome} hoverColor="#6A00B8" textColor={planosActive ? '#6A00B8' : undefined}>Home</NavLink>
-          <NavLink onClick={onScrollToAbout} hoverColor="#F88840" textColor={planosActive ? '#6A00B8' : undefined}>Sobre</NavLink>
-          <NavLink onClick={onScrollToPlans} hoverColor="#6A00B8" textColor={planosActive ? '#6A00B8' : undefined}>Planos</NavLink>
+          {!aboutActive && (
+            <NavLink onClick={onScrollToAbout} hoverColor="#F88840" textColor={planosActive ? '#6A00B8' : undefined}>Sobre</NavLink>
+          )}
+          {!planosActive && (
+            <NavLink onClick={onScrollToPlans} hoverColor="#6A00B8" textColor={planosActive ? '#6A00B8' : undefined}>Planos</NavLink>
+          )}
           {!footerVisible && <NavLink onClick={onScrollToContact} hoverColor="#F88840" textColor={planosActive ? '#6A00B8' : undefined}>Contato</NavLink>}
           {/* Botão Central do Assinante */}
           <a
@@ -132,8 +148,12 @@ const Header: React.FC<HeaderProps> = ({ onScrollToHome, onScrollToAbout, onScro
         <div className="md:hidden bg-transparent">
             <nav className="flex flex-col items-start p-4 space-y-2">
                 <NavLink onClick={onScrollToHome} onComplete={closeMenu} hoverColor="#6A00B8">Home</NavLink>
-                <NavLink onClick={onScrollToAbout} onComplete={closeMenu} hoverColor="#F88840">Sobre</NavLink>
-                <NavLink onClick={onScrollToPlans} onComplete={closeMenu} hoverColor="#6A00B8">Planos</NavLink>
+                {!aboutActive && (
+                  <NavLink onClick={onScrollToAbout} onComplete={closeMenu} hoverColor="#F88840">Sobre</NavLink>
+                )}
+                {!planosActive && (
+                  <NavLink onClick={onScrollToPlans} onComplete={closeMenu} hoverColor="#6A00B8">Planos</NavLink>
+                )}
                 {!footerVisible && <NavLink onClick={onScrollToContact} onComplete={closeMenu} hoverColor="#F88840">Contato</NavLink>}
                 {/* Botão Central do Assinante (Mobile) */}
                 <a
