@@ -96,7 +96,7 @@ const Header: React.FC<HeaderProps> = ({ onScrollToHome, onScrollToAbout, onScro
         <nav className={`hidden md:flex items-center text-lg transition-opacity duration-300 ${footerVisible ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
           <NavLink onClick={onScrollToHome} hoverColor="#6A00B8" textColor={planosActive ? '#6A00B8' : undefined}>Home</NavLink>
           {!aboutActive && (
-            <NavLink onClick={onScrollToAbout} hoverColor="#F88840" textColor={planosActive ? '#6A00B8' : undefined}>Sobre</NavLink>
+            <NavLink onClick={onScrollToAbout} hoverColor="#F88840" textColor={aboutActive ? '#F88840' : undefined}>Sobre</NavLink>
           )}
           {!planosActive && (
             <NavLink onClick={onScrollToPlans} hoverColor="#6A00B8" textColor={planosActive ? '#6A00B8' : undefined}>Planos</NavLink>
@@ -148,9 +148,7 @@ const Header: React.FC<HeaderProps> = ({ onScrollToHome, onScrollToAbout, onScro
         <div className="md:hidden bg-transparent">
             <nav className="flex flex-col items-start p-4 space-y-2">
                 <NavLink onClick={onScrollToHome} onComplete={closeMenu} hoverColor="#6A00B8">Home</NavLink>
-                {!aboutActive && (
-                  <NavLink onClick={onScrollToAbout} onComplete={closeMenu} hoverColor="#F88840">Sobre</NavLink>
-                )}
+                <NavLink onClick={onScrollToAbout} onComplete={closeMenu} hoverColor="#F88840" textColor={aboutActive ? '#F88840' : undefined}>Sobre</NavLink>
                 {!planosActive && (
                   <NavLink onClick={onScrollToPlans} onComplete={closeMenu} hoverColor="#6A00B8">Planos</NavLink>
                 )}

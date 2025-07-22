@@ -17,7 +17,7 @@ const About: React.FC = () => {
       <div className="absolute inset-0 bg-[#6A00B8]/80 z-10"></div>
       <div className="container mx-auto px-6 relative z-20">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-extrabold text-white">Sobre a <span className="text-[#F88840]">Seven Play</span></h2>
+          <h2 className="text-4xl font-extrabold text-[#F88840] transition-colors duration-300 hover:text-[#999999] cursor-pointer">Sobre a <span className="text-[#F88840]">Seven Play</span></h2>
           <p className="text-white mt-2">Conectando você ao que importa.</p>
         </div>
         <div className="flex flex-col items-center justify-center gap-10">
