@@ -23,11 +23,29 @@ const Hero: React.FC<HeroProps> = ({ onScrollToPlans }: HeroProps) => {
       <div className="absolute inset-0 bg-black/70 z-10"></div>
       <div className="relative text-center z-20 px-4">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-4 leading-tight">
-          A conexão que <span className="animated-gradient">transforma</span> seu mundo.
+          A conexão que <span className="animated-gradient">transforma</span> seu mundo na <span className="animated-gradient-velocidade">velocidade</span> da <span className="animated-gradient-luz">luz</span>.
         </h1>
         <style>{`
           .animated-gradient {
             background: linear-gradient(270deg, #6A00B8, #999999, #F88840, #6A00B8);
+            background-size: 600% 600%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            animation: gradientMove 4s ease-in-out infinite;
+          }
+          .animated-gradient-velocidade {
+            background: linear-gradient(270deg, #6A00B8, #ffffff, #6A00B8);
+            background-size: 600% 600%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            animation: gradientMove 4s ease-in-out infinite;
+          }
+          .animated-gradient-luz {
+            background: linear-gradient(270deg, #F88840, #ffffff, #F88840);
             background-size: 600% 600%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
