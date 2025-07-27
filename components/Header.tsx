@@ -33,9 +33,14 @@ const NavLink: React.FC<NavLinkProps> = ({ onClick, children, onComplete, hoverC
     );
 };
 
-const Logo: React.FC<{ onClick: () => void }> = ({ onClick }: { onClick: () => void }) => (
+const Logo: React.FC<{ onClick: () => void; isContactSection?: boolean }> = ({ onClick, isContactSection }: { onClick: () => void; isContactSection?: boolean }) => (
   <button onClick={onClick} className="cursor-pointer focus:outline-none flex items-center gap-2" aria-label="Seven Play Connect Home">
-    <img src="/img/LOGO 1.jpg" alt="Logo Seven Play Connect" className="h-20 w-auto" style={{ borderRadius: '50%' }} />
+    <img 
+      src={isContactSection ? "/img/LOGO 4.jpg" : "/img/LOGO 1.jpg"} 
+      alt="Logo Seven Play Connect" 
+      className="h-20 w-auto" 
+      style={{ borderRadius: '50%' }} 
+    />
   </button>
 );
 
@@ -91,46 +96,48 @@ const Header: React.FC<HeaderProps> = ({ onScrollToHome, onScrollToAbout, onScro
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <div className="container mx-auto px-6 py-1 flex justify-between items-center">
-        <Logo onClick={() => { onScrollToHome(); closeMenu(); }} />
+        <Logo onClick={() => { onScrollToHome(); closeMenu(); }} isContactSection={footerVisible} />
         {/* Desktop Navigation */}
         <nav className={`hidden md:flex items-center text-lg transition-opacity duration-300 ${footerVisible ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-          <NavLink onClick={onScrollToHome} hoverColor="#6A00B8" textColor={planosActive ? '#6A00B8' : undefined}>Home</NavLink>
-          {!aboutActive && (
+          <NavLink onClick={onScrollToHome} hoverColor="#6A00B8" textColor={planosActive ? '#6A00B8' : undefined}>Início</NavLink>
+          {!footerVisible && !aboutActive && (
             <NavLink onClick={onScrollToAbout} hoverColor="#F88840" textColor={aboutActive ? '#F88840' : undefined}>Sobre</NavLink>
           )}
-          {!planosActive && (
+          {!footerVisible && !planosActive && (
             <NavLink onClick={onScrollToPlans} hoverColor="#6A00B8" textColor={planosActive ? '#6A00B8' : undefined}>Planos</NavLink>
           )}
           {!footerVisible && <NavLink onClick={onScrollToContact} hoverColor="#F88840" textColor={planosActive ? '#6A00B8' : undefined}>Contato</NavLink>}
-          {/* Botão Central do Assinante */}
-          <a
-            href="https://sevenplayconnect.sgp.net.br/accounts/central/login"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-4 px-4 py-2 rounded-full font-semibold transition-colors duration-200"
-            style={{
-              backgroundColor: '#6A00B8',
-              color: '#fff',
-            }}
-            onMouseOver={e => {
-              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#F88840';
-              (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
-            }}
-            onMouseOut={e => {
-              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#6A00B8';
-              (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
-            }}
-            onMouseDown={e => {
-              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#999999';
-              (e.currentTarget as HTMLAnchorElement).style.color = '#6A00B8';
-            }}
-            onMouseUp={e => {
-              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#F88840';
-              (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
-            }}
-          >
-            Central do assinante
-          </a>
+          {!footerVisible && (
+            /* Botão Central do Assinante */
+            <a
+              href="https://sevenplayconnect.sgp.net.br/accounts/central/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-4 px-4 py-2 rounded-full font-semibold transition-colors duration-200"
+              style={{
+                backgroundColor: '#6A00B8',
+                color: '#fff',
+              }}
+              onMouseOver={e => {
+                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#F88840';
+                (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
+              }}
+              onMouseOut={e => {
+                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#6A00B8';
+                (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
+              }}
+              onMouseDown={e => {
+                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#999999';
+                (e.currentTarget as HTMLAnchorElement).style.color = '#6A00B8';
+              }}
+              onMouseUp={e => {
+                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#F88840';
+                (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
+              }}
+            >
+              Central do assinante
+            </a>
+          )}
         </nav>
         {/* Mobile Menu Button */}
         <div className="md:hidden">
@@ -147,41 +154,45 @@ const Header: React.FC<HeaderProps> = ({ onScrollToHome, onScrollToAbout, onScro
       {isMenuOpen && (
         <div className="md:hidden bg-transparent">
             <nav className="flex flex-col items-start p-4 space-y-2">
-                <NavLink onClick={onScrollToHome} onComplete={closeMenu} hoverColor="#6A00B8">Home</NavLink>
-                <NavLink onClick={onScrollToAbout} onComplete={closeMenu} hoverColor="#F88840" textColor={aboutActive ? '#F88840' : undefined}>Sobre</NavLink>
-                {!planosActive && (
-                  <NavLink onClick={onScrollToPlans} onComplete={closeMenu} hoverColor="#6A00B8">Planos</NavLink>
+                <NavLink onClick={onScrollToHome} onComplete={closeMenu} hoverColor="#6A00B8">Início</NavLink>
+                {!footerVisible && (
+                  <>
+                    <NavLink onClick={onScrollToAbout} onComplete={closeMenu} hoverColor="#F88840" textColor={aboutActive ? '#F88840' : undefined}>Sobre</NavLink>
+                    {!planosActive && (
+                      <NavLink onClick={onScrollToPlans} onComplete={closeMenu} hoverColor="#6A00B8">Planos</NavLink>
+                    )}
+                    <NavLink onClick={onScrollToContact} onComplete={closeMenu} hoverColor="#F88840">Contato</NavLink>
+                    {/* Botão Central do Assinante (Mobile) */}
+                    <a
+                      href="https://sevenplayconnect.sgp.net.br/accounts/central/login"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 px-4 py-2 rounded-full font-semibold transition-colors duration-200 w-full text-center"
+                      style={{
+                        backgroundColor: '#6A00B8',
+                        color: '#fff',
+                      }}
+                      onMouseOver={e => {
+                        (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#F88840';
+                        (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
+                      }}
+                      onMouseOut={e => {
+                        (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#6A00B8';
+                        (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
+                      }}
+                      onMouseDown={e => {
+                        (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#999999';
+                        (e.currentTarget as HTMLAnchorElement).style.color = '#6A00B8';
+                      }}
+                      onMouseUp={e => {
+                        (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#F88840';
+                        (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
+                      }}
+                    >
+                      Central do assinante
+                    </a>
+                  </>
                 )}
-                {!footerVisible && <NavLink onClick={onScrollToContact} onComplete={closeMenu} hoverColor="#F88840">Contato</NavLink>}
-                {/* Botão Central do Assinante (Mobile) */}
-                <a
-                  href="https://sevenplayconnect.sgp.net.br/accounts/central/login"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-2 px-4 py-2 rounded-full font-semibold transition-colors duration-200 w-full text-center"
-                  style={{
-                    backgroundColor: '#6A00B8',
-                    color: '#fff',
-                  }}
-                  onMouseOver={e => {
-                    (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#F88840';
-                    (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
-                  }}
-                  onMouseOut={e => {
-                    (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#6A00B8';
-                    (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
-                  }}
-                  onMouseDown={e => {
-                    (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#999999';
-                    (e.currentTarget as HTMLAnchorElement).style.color = '#6A00B8';
-                  }}
-                  onMouseUp={e => {
-                    (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#F88840';
-                    (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
-                  }}
-                >
-                  Central do assinante
-                </a>
             </nav>
         </div>
       )}
