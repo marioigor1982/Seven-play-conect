@@ -1,5 +1,6 @@
 import React from 'react';
 import { PhoneIcon } from './icons';
+import familyHappyVideo from '../img/family_happy.mp4';
 
 const About: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const About: React.FC = () => {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
-        <source src="/img/family_happy.mp4" type="video/mp4" />
+        <source src={familyHappyVideo} type="video/mp4" />
         Seu navegador não suporta a tag de vídeo.
       </video>
       <div className="absolute inset-0 bg-[#6A00B8]/80 z-10"></div>

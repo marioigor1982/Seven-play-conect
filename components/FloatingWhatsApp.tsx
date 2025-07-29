@@ -1,5 +1,6 @@
 import React from 'react';
 import { FLOATING_WHATSAPP_URL } from '../constants';
+import whatsappIcon from '../img/whatsapp.png';
 
 const FloatingWhatsApp: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const FloatingWhatsApp: React.FC = () => {
       aria-label="Fale conosco pelo WhatsApp"
       style={{ background: 'linear-gradient(135deg, #25D366 60%, #128C7E 100%)' }}
     >
-      <img src="/img/whatsapp.png" alt="WhatsApp" className="h-10 w-10 drop-shadow-lg" />
+      <img src={whatsappIcon} alt="WhatsApp" className="h-10 w-10 drop-shadow-lg" />
     </a>
   );
 };

@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { MenuIcon, CloseIcon } from './icons';
+import logo1 from '../img/LOGO 1.jpg';
+import logo4 from '../img/LOGO 4.jpg';
 
 interface HeaderProps {
   onScrollToHome: () => void;
@@ -36,7 +38,7 @@ const NavLink: React.FC<NavLinkProps> = ({ onClick, children, onComplete, hoverC
 const Logo: React.FC<{ onClick: () => void; isContactSection?: boolean }> = ({ onClick, isContactSection }: { onClick: () => void; isContactSection?: boolean }) => (
   <button onClick={onClick} className="cursor-pointer focus:outline-none flex items-center gap-2" aria-label="Seven Play Connect Home">
     <img 
-      src={isContactSection ? "/img/LOGO 4.jpg" : "/img/LOGO 1.jpg"} 
+      src={isContactSection ? logo4 : logo1} 
       alt="Logo Seven Play Connect" 
       className="h-20 w-auto" 
       style={{ borderRadius: '50%' }} 

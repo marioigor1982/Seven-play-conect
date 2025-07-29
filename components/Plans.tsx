@@ -2,6 +2,7 @@
 import React from 'react';
 import { INTERNET_PLANS } from '../constants';
 import PlanCard from './PlanCard';
+import sevenPlayVideo from '../img/Seven_play.mp4';
 
 const Plans: React.FC = () => {
   return (
@@ -13,7 +14,7 @@ const Plans: React.FC = () => {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
-        <source src="/img/Seven_play.mp4" type="video/mp4" />
+        <source src={sevenPlayVideo} type="video/mp4" />
         Seu navegador não suporta a tag de vídeo.
       </video>
       <div className="absolute inset-0 bg-[#F88840]/80 z-10"></div>

@@ -2,6 +2,7 @@
 import React from 'react';
 import { INSTAGRAM_URL, EMAIL_ADDRESS } from '../constants';
 import { InstagramIcon, EmailIcon, PhoneIcon } from './icons';
+import anatelLogo from '../img/Logo_Anatel.png';
 
 const Footer: React.FC = () => {
     const mapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.442111059103!2d-46.85218708502102!3d-23.62423598465192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cfab42000f073d%3A0x6080352528104277!2sEstr.%20Dona%20Maria%20Jos%C3%A9%20Ferraz%20Prado%2C%202595%20-%20Ch%C3%A1caras%20Bartira%2C%20Embu%20das%20Artes%20-%20SP%2C%2006845-176%2C%20Brasil!5e0!3m2!1spt-BR!2sus!4v1678886400000!5m2!1spt-BR!2sus";
@@ -57,7 +58,7 @@ const Footer: React.FC = () => {
           {/* Anatel Logo */}
           <div className="mb-6 flex justify-center">
             <img 
-              src="/img/Logo_Anatel.png" 
+              src={anatelLogo} 
               alt="Logo Anatel" 
               className="h-16 w-auto opacity-80"
             />

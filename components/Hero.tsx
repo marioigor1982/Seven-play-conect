@@ -1,4 +1,5 @@
 import React from 'react';
+import sevenPlayVideo from '../img/7play_video.mp4';
 
 interface HeroProps {
     onScrollToPlans: () => void;
@@ -16,7 +17,7 @@ const Hero: React.FC<HeroProps> = ({ onScrollToPlans }: HeroProps) => {
             playsInline
             className="absolute top-0 left-0 w-full h-full object-cover z-0"
         >
-             <source src="./img/7play_video.mp4" type="video/mp4" />
+             <source src={sevenPlayVideo} type="video/mp4" />
              Seu navegador não suporta a tag de vídeo.
         </video>
 
