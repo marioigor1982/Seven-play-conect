@@ -24,7 +24,7 @@ const Hero: React.FC<HeroProps> = ({ onScrollToPlans }: HeroProps) => {
       <div className="absolute inset-0 bg-black/70 z-10"></div>
       <div className="relative text-center z-20 px-4">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-4 leading-tight">
-          A conexão que <span className="animated-gradient">transforma</span> seu mundo na <span className="animated-gradient-velocidade">velocidade</span> da <span className="animated-gradient-luz">luz</span>.
+          <span className="animated-gradient">Conectando</span> pessoas através da <span className="animated-gradient-luz">Luz</span>!
         </h1>
         <style>{`
           .animated-gradient {

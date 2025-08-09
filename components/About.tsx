@@ -24,7 +24,7 @@ const About: React.FC = () => {
         <div className="flex flex-col items-center justify-center gap-10">
           <div className="w-full max-w-2xl text-center text-lg text-white">
             <p className="mb-4">
-              A Seven Play Connect é uma empresa que fornece conexão ultrarrápida para residências e empresas. Oferecemos internet de qualidade 100% fibra óptica com planos de 300 a 1000 mega.
+              A Seven Play Connect é uma empresa que fornece conexão ultrarrápida para residências e empresas. Oferecemos internet de qualidade 100% fibra óptica com planos de 300 a 500 mega.
             </p>
             <p className="mb-6">
               Nossos técnicos qualificados podem ajudá-lo a analisar suas necessidades de conexão e a fornecer a melhor solução para sua casa ou negócio.
